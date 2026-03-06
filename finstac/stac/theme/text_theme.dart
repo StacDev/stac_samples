@@ -61,6 +61,7 @@ StacTextTheme get finstacTextTheme => StacTextTheme(
     fontWeight: StacFontWeight.normal,
     height: 1.5,
   ),
+
   bodyMedium: StacTextStyle(
     fontSize: 15,
     fontWeight: StacFontWeight.normal,
