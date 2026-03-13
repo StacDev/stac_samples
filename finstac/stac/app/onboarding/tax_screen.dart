@@ -40,14 +40,15 @@ StacWidget taxScreen() {
           StacTextField(
             decoration: StacInputDecoration(
               labelText: 'ID Number',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
             ),
           ),
           StacSizedBox(height: 24),
           StacText(
             data:
-                'Imporant: Details like name, age, etc. on the tax id should match with your entered details. Failure to match will result in your application being rejected.',
-            style: StacThemeData.textTheme.bodySmall,
+                'Important: Details like name, age, etc. on the tax id should match with your entered details. Failure to match will result in your application being rejected.',
+            style: StacThemeData.textTheme.bodySmall.copyWith(
+              color: StacColors.onSurfaceVariant,
+            ),
           ),
           StacSpacer(),
           primaryButton(

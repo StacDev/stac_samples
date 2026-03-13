@@ -2,51 +2,65 @@ import 'package:stac_core/stac_core.dart';
 
 @StacScreen(screenName: "homeScreen")
 StacWidget homeScreen() {
-  return StacScaffold(
-    backgroundColor: StacColors.surfaceBright,
-    body: StacColumn(
-      children: [
-        _topBar(),
-        StacSizedBox(height: 4),
-        _creditCard(),
-        StacSizedBox(height: 20),
-        StacExpanded(child: _sheetSection()),
-      ],
-    ),
-  );
-}
-
-StacWidget _topBar() {
-  return StacContainer(
-    width: double.maxFinite,
-    height: 56,
-    padding: StacEdgeInsets.symmetric(horizontal: 20),
-    child: StacRow(
-      crossAxisAlignment: StacCrossAxisAlignment.center,
-      children: [
-        StacIcon(icon: StacIcons.eco_outlined, color: StacColors.secondary),
-        StacSizedBox(width: 8),
-        StacText(
-          data: 'Finstac',
-          style: StacThemeData.textTheme.titleSmall,
-          copyWithStyle: StacCustomTextStyle(
-            fontWeight: StacFontWeight.w600,
-            letterSpacing: -0.19,
-          ),
+  return StacDefaultTabController(
+    length: 2,
+    child: StacScaffold(
+      backgroundColor: StacColors.surfaceBright,
+      appBar: StacAppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: false,
+        title: StacRow(
+          mainAxisSize: StacMainAxisSize.min,
+          crossAxisAlignment: StacCrossAxisAlignment.center,
+          children: [
+            StacContainer(
+              width: 24,
+              height: 24,
+              child: StacImage.asset(
+                'assets/logo.svg',
+                fit: StacBoxFit.contain,
+              ),
+            ),
+            StacSizedBox(width: 8),
+            StacText(
+              data: 'Finstac',
+              style: StacThemeData.textTheme.titleSmall,
+              copyWithStyle: StacCustomTextStyle(
+                fontWeight: StacFontWeight.w600,
+                letterSpacing: -0.19,
+              ),
+            ),
+          ],
         ),
-        StacSpacer(),
-        StacContainer(
-          width: 38,
-          height: 38,
-          padding: StacEdgeInsets.all(2),
-          decoration: StacBoxDecoration(
-            shape: StacBoxShape.circle,
-            border: StacBorder.all(color: StacColors.outline, width: 1),
-            color: StacColors.surfaceBright,
+        actions: [
+          StacGestureDetector(
+            onTap: StacNavigator.pushStac('profile_screen'),
+            child: StacContainer(
+              width: 38,
+              height: 38,
+              padding: StacEdgeInsets.all(2),
+              margin: StacEdgeInsets.only(right: 20),
+              decoration: StacBoxDecoration(
+                shape: StacBoxShape.circle,
+                border: StacBorder.all(color: StacColors.outline, width: 1),
+                color: StacColors.surfaceBright,
+              ),
+              child: StacImage.asset(
+                'assets/avatar.png',
+                fit: StacBoxFit.cover,
+              ),
+            ),
           ),
-          child: StacImage.asset('assets/avatar.png', fit: StacBoxFit.cover),
-        ),
-      ],
+        ],
+      ),
+      body: StacColumn(
+        children: [
+          StacSizedBox(height: 4),
+          _creditCard(),
+          StacSizedBox(height: 20),
+          StacExpanded(child: _sheetSection()),
+        ],
+      ),
     ),
   );
 }
@@ -79,6 +93,13 @@ StacWidget _creditCard() {
               child: StacContainer(color: StacColors.white),
             ),
           ),
+          StacPositioned(
+            right: 0,
+            top: 0,
+            width: 122.5,
+            height: 112,
+            child: StacImage.asset('assets/lines.svg', fit: StacBoxFit.cover),
+          ),
           StacPositioned.fill(
             child: StacPadding(
               padding: StacEdgeInsets.all(16),
@@ -102,19 +123,20 @@ StacWidget _creditCard() {
                     ),
                   ),
                   StacSpacer(),
-                  StacText(
-                    data: 'Balance',
-                    style: StacThemeData.textTheme.labelSmall,
-                    copyWithStyle: StacCustomTextStyle(
-                      color: StacColors.white.withOpacity(0.6),
-                    ),
-                  ),
                   StacRow(
                     mainAxisAlignment: StacMainAxisAlignment.spaceBetween,
                     crossAxisAlignment: StacCrossAxisAlignment.end,
                     children: [
-                      StacRow(
+                      StacColumn(
+                        crossAxisAlignment: StacCrossAxisAlignment.start,
                         children: [
+                          StacText(
+                            data: 'Balance',
+                            style: StacThemeData.textTheme.labelSmall,
+                            copyWithStyle: StacCustomTextStyle(
+                              color: StacColors.white.withOpacity(0.6),
+                            ),
+                          ),
                           StacText(
                             data: '\$60,489',
                             style: StacThemeData.textTheme.titleSmall,
@@ -123,24 +145,22 @@ StacWidget _creditCard() {
                               letterSpacing: -0.19,
                               color: StacColors.white,
                             ),
-                          ),
-                          StacText(
-                            data: '.24',
-                            style: StacThemeData.textTheme.titleSmall,
-                            copyWithStyle: StacCustomTextStyle(
-                              color: StacColors.white.withOpacity(0.6),
-                            ),
+                            children: [
+                              StacTextSpan(
+                                text: '.24',
+                                style: StacThemeData.textTheme.titleSmall
+                                    .copyWith(
+                                      color: StacColors.white.withOpacity(0.6),
+                                    ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      StacText(
-                        data: 'VISA',
-                        style: StacThemeData.textTheme.titleSmall,
-                        copyWithStyle: StacCustomTextStyle(
-                          fontWeight: StacFontWeight.w600,
-                          letterSpacing: 2.0,
-                          color: StacColors.white,
-                        ),
+                      StacImage.asset(
+                        'assets/visa.png',
+                        fit: StacBoxFit.contain,
+                        height: 32,
                       ),
                     ],
                   ),
@@ -163,62 +183,49 @@ StacWidget _sheetSection() {
         top: StacBorderSide(color: StacColors.outline, width: 1),
       ),
     ),
-    child: StacSingleChildScrollView(
-      child: StacColumn(
-        children: [
-          StacSizedBox(height: 19),
-          _infoCard(),
-          _transactionsHeader(),
-          _transactionRow(
-            icon: StacIcons.send,
-            iconColor: '#3B82F6',
-            title: 'Sent to Andrew Willia..',
-            ref: 'AB1000001790U',
-            amount: '-\$430.80',
-            time: '11:30 PM',
+    child: StacColumn(
+      children: [
+        StacSizedBox(height: 19),
+        _infoCard(),
+        StacSizedBox(height: 16),
+        StacPadding(
+          padding: StacEdgeInsets.symmetric(horizontal: 20),
+          child: StacTabBar(
+            isScrollable: true,
+            tabAlignment: StacTabAlignment.start,
+            padding: StacEdgeInsets.all(0),
+            indicatorColor: StacColors.secondary,
+            indicatorWeight: 1,
+            indicatorSize: StacTabBarIndicatorSize.label,
+            indicatorPadding: StacEdgeInsets.all(0),
+            labelColor: StacColors.onSurface,
+            labelStyle: StacTextStyle(
+              fontWeight: StacFontWeight.w600,
+              letterSpacing: -0.15,
+              fontSize: 15,
+              height: 1.5,
+              color: StacColors.onSurface,
+            ),
+            labelPadding: StacEdgeInsets.only(right: 24),
+            unselectedLabelColor: StacColors.onSurfaceVariant,
+            unselectedLabelStyle: StacCustomTextStyle(
+              fontWeight: StacFontWeight.w400,
+              fontSize: 15,
+              height: 1.5,
+              color: StacColors.onSurfaceVariant,
+            ),
+            tabs: [
+              StacTab(text: 'Transactions'),
+              StacTab(text: 'Details'),
+            ],
           ),
-          _transactionRow(
-            icon: StacIcons.paypal,
-            iconColor: '#003087',
-            title: 'Paypal Transfer Rewards',
-            ref: 'NU1000001710C',
-            amount: '+\$2.16',
-            time: '10:24 PM',
+        ),
+        StacExpanded(
+          child: StacTabBarView(
+            children: [_transactionsTabContent(), _detailsTabContent()],
           ),
-          _transactionRow(
-            icon: StacIcons.park,
-            iconColor: '#0056D6',
-            title: 'Disney Land Entry',
-            ref: 'AB1000001790U',
-            amount: '-\$1280.24',
-            time: 'Jan 04',
-          ),
-          _transactionRow(
-            icon: StacIcons.account_balance,
-            iconColor: '#1DA08A',
-            title: 'Dec: Interest on Deposits',
-            ref: 'NU1000001710C',
-            amount: '+\$34.05',
-            time: 'Dec 14, 2025',
-          ),
-          _transactionRow(
-            icon: StacIcons.restaurant,
-            iconColor: '#E76946',
-            title: 'Popeyes: Madison Bay',
-            ref: 'AB1000001790U',
-            amount: '-\$58.80',
-            time: 'Dec 09, 2025',
-          ),
-          _transactionRow(
-            icon: StacIcons.paypal,
-            iconColor: '#003087',
-            title: 'Paypal Transfer Rewards',
-            ref: 'NU1000001710C',
-            amount: '+\$2.16',
-            time: 'Nov 27, 2025',
-          ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
@@ -246,6 +253,13 @@ StacWidget _infoCard() {
               opacity: 0.5,
               child: StacContainer(color: StacColors.surfaceBright),
             ),
+          ),
+          StacPositioned(
+            right: 0,
+            top: 0,
+            width: 80,
+            height: 76,
+            child: StacImage.asset('assets/circles.svg', fit: StacBoxFit.cover),
           ),
           StacPositioned.fill(
             child: StacColumn(
@@ -319,40 +333,132 @@ StacWidget _infoCard() {
   );
 }
 
-StacWidget _transactionsHeader() {
-  return StacColumn(
-    children: [
-      StacSizedBox(height: 16),
-      StacPadding(
-        padding: StacEdgeInsets.symmetric(horizontal: 20),
-        child: StacRow(
-          children: [
-            StacText(
-              data: 'Transactions',
-              style: StacThemeData.textTheme.bodyMedium,
-              copyWithStyle: StacCustomTextStyle(
-                fontWeight: StacFontWeight.w600,
-                letterSpacing: -0.15,
-              ),
-            ),
-            StacSizedBox(width: 24),
-            StacText(
-              data: 'Details',
-              style: StacThemeData.textTheme.bodyMedium,
-              copyWithStyle: StacCustomTextStyle(
-                color: StacColors.onSurfaceVariant,
-              ),
-            ),
-          ],
+StacWidget _transactionsTabContent() {
+  return StacSingleChildScrollView(
+    child: StacColumn(
+      children: [
+        _transactionRow(
+          icon: StacIcons.send,
+          iconColor: '#3B82F6',
+          title: 'Sent to Andrew Willia..',
+          ref: 'AB1000001790U',
+          amount: '-\$430.80',
+          time: '11:30 PM',
         ),
-      ),
-      StacSizedBox(height: 16),
-      StacPadding(
-        padding: StacEdgeInsets.symmetric(horizontal: 20),
-        child: StacDivider(height: 1, thickness: 1, color: StacColors.outline),
-      ),
-      StacSizedBox(height: 8),
-    ],
+        _transactionRow(
+          icon: StacIcons.paypal,
+          iconColor: '#003087',
+          title: 'Paypal Transfer Rewards',
+          ref: 'NU1000001710C',
+          amount: '+\$2.16',
+          time: '10:24 PM',
+        ),
+        _transactionRow(
+          icon: StacIcons.park,
+          iconColor: '#0056D6',
+          title: 'Disney Land Entry',
+          ref: 'AB1000001790U',
+          amount: '-\$1280.24',
+          time: 'Jan 04',
+        ),
+        _transactionRow(
+          icon: StacIcons.account_balance,
+          iconColor: '#1DA08A',
+          title: 'Dec: Interest on Deposits',
+          ref: 'NU1000001710C',
+          amount: '+\$34.05',
+          time: 'Dec 14, 2025',
+        ),
+        _transactionRow(
+          icon: StacIcons.restaurant,
+          iconColor: '#E76946',
+          title: 'Popeyes: Madison Bay',
+          ref: 'AB1000001790U',
+          amount: '-\$58.80',
+          time: 'Dec 09, 2025',
+        ),
+        _transactionRow(
+          icon: StacIcons.paypal,
+          iconColor: '#003087',
+          title: 'Paypal Transfer Rewards',
+          ref: 'NU1000001710C',
+          amount: '+\$2.16',
+          time: 'Nov 27, 2025',
+        ),
+      ],
+    ),
+  );
+}
+
+StacWidget _detailsTabContent() {
+  return StacSingleChildScrollView(
+    child: StacColumn(
+      crossAxisAlignment: StacCrossAxisAlignment.start,
+      children: [
+        StacSizedBox(height: 16),
+        StacPadding(
+          padding: StacEdgeInsets.symmetric(horizontal: 20),
+          child: StacText(
+            data:
+                'Important: Please don\'t share your account details with anyone. FinStac executives will never ask for your account details or password.',
+            style: StacThemeData.textTheme.bodySmall,
+            copyWithStyle: StacCustomTextStyle(
+              color: StacColors.onSurfaceVariant,
+            ),
+          ),
+        ),
+        StacSizedBox(height: 24),
+        _detailRow(label: 'Account No.', value: '100000894010'),
+        _detailDivider(),
+        _detailRow(label: 'Type', value: 'Savings Account'),
+        _detailDivider(),
+        _detailRow(label: 'Branch', value: 'Madison Bay Area'),
+        _detailDivider(),
+        _detailRow(label: 'Address', value: 'Plex Towers, 14th Street'),
+        _detailDivider(),
+        _detailRow(label: 'Branch Code', value: 'FSC0000198'),
+        _detailDivider(),
+        _detailRow(label: 'Remittance Code', value: 'MRC10005'),
+        StacSizedBox(height: 24),
+      ],
+    ),
+  );
+}
+
+StacWidget _detailRow({required String label, required String value}) {
+  return StacContainer(
+    width: double.maxFinite,
+    height: 40,
+    padding: StacEdgeInsets.symmetric(horizontal: 20),
+    child: StacRow(
+      crossAxisAlignment: StacCrossAxisAlignment.center,
+      children: [
+        StacSizedBox(
+          width: 140,
+          child: StacText(
+            data: label,
+            style: StacThemeData.textTheme.bodyMedium,
+          ),
+        ),
+        StacExpanded(
+          child: StacText(
+            data: value,
+            style: StacThemeData.textTheme.bodyMedium,
+            copyWithStyle: StacCustomTextStyle(
+              fontWeight: StacFontWeight.w600,
+              letterSpacing: -0.15,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+StacWidget _detailDivider() {
+  return StacPadding(
+    padding: StacEdgeInsets.symmetric(horizontal: 20),
+    child: StacDivider(height: 1, thickness: 1, color: StacColors.outline),
   );
 }
 

@@ -40,31 +40,28 @@ StacWidget addressScreen() {
           StacTextField(
             decoration: StacInputDecoration(
               labelText: 'Address',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
             ),
           ),
           StacSizedBox(height: 24),
           StacTextField(
             decoration: StacInputDecoration(
               labelText: 'Locality',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
             ),
           ),
           StacSizedBox(height: 24),
           StacTextField(
             decoration: StacInputDecoration(
               labelText: 'State',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
             ),
           ),
           StacSizedBox(height: 24),
           StacRow(
+            spacing: 16,
             children: [
               StacExpanded(
                 child: StacTextField(
                   decoration: StacInputDecoration(
                     labelText: 'Postal Code',
-                    labelStyle: StacThemeData.textTheme.bodyMedium,
                   ),
                 ),
               ),
@@ -72,7 +69,6 @@ StacWidget addressScreen() {
                 child: StacTextField(
                   decoration: StacInputDecoration(
                     labelText: 'Country',
-                    labelStyle: StacThemeData.textTheme.bodyMedium,
                   ),
                 ),
               ),
@@ -81,7 +77,7 @@ StacWidget addressScreen() {
           StacSpacer(),
           primaryButton(
             text: 'Next Step',
-            onPressed: StacNavigator.pushStac('home_screen'),
+            onPressed: StacNavigator.pushStac('tax_screen'),
           ),
         ],
       ),

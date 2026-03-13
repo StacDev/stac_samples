@@ -27,6 +27,24 @@ StacTheme get finstacLightTheme => StacTheme(
   textTheme: finstacTextTheme,
   filledButtonTheme: filledButtonTheme,
   textButtonTheme: textButtonTheme,
+  inputDecorationTheme: StacInputDecorationTheme(
+    hintStyle: StacThemeData.textTheme.bodyMedium.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    labelStyle: StacThemeData.textTheme.bodyMedium.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    floatingLabelStyle: StacThemeData.textTheme.labelSmall.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    contentPadding: StacEdgeInsets.symmetric(horizontal: 16, vertical: 14),
+    border: inputBorder,
+    enabledBorder: inputBorder,
+    focusedBorder: inputBorder,
+    errorBorder: inputBorder,
+    disabledBorder: inputBorder,
+    focusedErrorBorder: inputBorder,
+  ),
 );
 
 @StacThemeRef(name: "dark_theme")
@@ -55,6 +73,16 @@ StacTheme get finstacDarkTheme => StacTheme(
   filledButtonTheme: filledButtonTheme,
   textButtonTheme: textButtonTheme,
   inputDecorationTheme: StacInputDecorationTheme(
+    hintStyle: StacThemeData.textTheme.bodyMedium.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    labelStyle: StacThemeData.textTheme.bodyMedium.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    floatingLabelStyle: StacThemeData.textTheme.labelSmall.copyWith(
+      color: StacColors.onSurfaceVariant,
+    ),
+    contentPadding: StacEdgeInsets.symmetric(horizontal: 16, vertical: 14),
     border: inputBorder,
     enabledBorder: inputBorder,
     focusedBorder: inputBorder,
@@ -66,7 +94,9 @@ StacTheme get finstacDarkTheme => StacTheme(
 
 final filledButtonTheme = StacButtonStyle(
   shape: StacRoundedRectangleBorder(borderRadius: StacBorderRadius.circular(2)),
-  textStyle: StacThemeData.textTheme.bodyLarge,
+  textStyle: StacThemeData.textTheme.bodyMedium.copyWith(
+    fontWeight: StacFontWeight.w600,
+  ),
   minimumSize: StacSize(double.maxFinite, 56),
   padding: StacEdgeInsets.only(left: 20, top: 15, right: 16, bottom: 15),
 );
@@ -79,7 +109,7 @@ final textButtonTheme = StacButtonStyle(
 final inputBorder = StacInputBorder(
   type: StacInputBorderType.outlineInputBorder,
   borderRadius: StacBorderRadius.circular(2),
-  gapPadding: 0,
+  gapPadding: 4,
   width: 1,
   color: StacColors.outlineVariant,
 );

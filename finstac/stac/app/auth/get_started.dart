@@ -18,10 +18,13 @@ StacWidget getStarted() {
             crossAxisAlignment: StacCrossAxisAlignment.center,
             children: [
               StacSpacer(),
-              StacIcon(
-                icon: StacIcons.eco_outlined,
-                color: StacColors.secondary,
-                size: 56,
+              StacContainer(
+                width: 56,
+                height: 56,
+                child: StacImage.asset(
+                  'assets/logo.svg',
+                  fit: StacBoxFit.contain,
+                ),
               ),
               StacSizedBox(height: 24),
               StacText(

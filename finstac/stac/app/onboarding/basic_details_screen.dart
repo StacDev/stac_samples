@@ -37,37 +37,24 @@ StacWidget basicDetailsScreen() {
             ],
           ),
           StacSizedBox(height: 32),
-          StacTextField(
-            decoration: StacInputDecoration(
-              labelText: 'Name',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
-            ),
-          ),
+          StacTextField(decoration: StacInputDecoration(labelText: 'Name')),
           StacSizedBox(height: 24),
           StacTextField(
-            decoration: StacInputDecoration(
-              labelText: 'Nationality',
-              labelStyle: StacThemeData.textTheme.bodyMedium,
-            ),
+            decoration: StacInputDecoration(labelText: 'Nationality'),
           ),
 
           StacSizedBox(height: 24),
           StacRow(
+            spacing: 16,
             children: [
               StacExpanded(
                 child: StacTextField(
-                  decoration: StacInputDecoration(
-                    labelText: 'Gender',
-                    labelStyle: StacThemeData.textTheme.bodyMedium,
-                  ),
+                  decoration: StacInputDecoration(labelText: 'Gender'),
                 ),
               ),
               StacExpanded(
                 child: StacTextField(
-                  decoration: StacInputDecoration(
-                    labelText: 'Date of Birth',
-                    labelStyle: StacThemeData.textTheme.bodyMedium,
-                  ),
+                  decoration: StacInputDecoration(labelText: 'Date of Birth'),
                 ),
               ),
             ],
@@ -75,7 +62,7 @@ StacWidget basicDetailsScreen() {
           StacSpacer(),
           primaryButton(
             text: 'Next Step',
-            onPressed: StacNavigator.pushStac('home_screen'),
+            onPressed: StacNavigator.pushStac('address_screen'),
           ),
         ],
       ),

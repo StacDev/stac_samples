@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:stac/stac.dart';
 
 void main() async {
-  await Stac.initialize(options: defaultStacOptions);
+  await Stac.initialize(
+    options: defaultStacOptions,
+    cacheConfig: StacCacheConfig(strategy: StacCacheStrategy.optimistic),
+  );
   runApp(const MyApp());
 }
 
