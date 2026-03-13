@@ -4,7 +4,7 @@ A monorepo of example Flutter apps built with [Stac](https://pub.dev/packages/st
 
 ## What is Stac?
 
-[Stac](https://docs.buildwithstac.com) is a server-driven UI framework for Flutter. You define screens using the Stac DSL (Dart), build them into JSON, and deploy to Stac Cloud. The app renders UI at runtime, so you can ship UI changes without releasing a new app version.
+[Stac](https://docs.stac.dev/) is a server-driven UI framework for Flutter. You define screens using the Stac DSL (Dart), build them into JSON, and deploy to Stac Cloud. The app renders UI at runtime, so you can ship UI changes without releasing a new app version.
 
 ## Samples
 
@@ -15,7 +15,7 @@ A monorepo of example Flutter apps built with [Stac](https://pub.dev/packages/st
 ## Prerequisites
 
 * Flutter SDK `^3.10.7`
-* Stac CLI (install from [docs.buildwithstac.com](https://docs.buildwithstac.com))
+* Stac CLI (install from [docs.stac.dev](https://docs.stac.dev/cli))
 
 ## Running a Sample
 
@@ -45,6 +45,5 @@ stac-samples/
 
 ## Resources
 
-* [Stac Documentation](https://docs.buildwithstac.com)
+* [Stac Documentation](https://docs.stac.dev)
 * [stac on pub.dev](https://pub.dev/packages/stac)
-* [stac_core on pub.dev](https://pub.dev/packages/stac_core)
